@@ -1,0 +1,5 @@
+!build/.gitkeep
+!.vscode/.gitkeep
+!data/.gitkeep
+!indices/.gitkeep
+!logs/.gitkeep
