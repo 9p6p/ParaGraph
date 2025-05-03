@@ -1,0 +1,12 @@
+CompileFlags:
+  Add:
+    - --no-cuda-version-check
+
+  Remove:
+    # 移除所有不支持的NVCC特有参数
+    - -forward-unknown-to-host-compiler
+    - --generate-code=*
+    - -Xcompiler=*
+    - --generate-line-info
+    - --ptxas-options=*
+    - -gencode=*
