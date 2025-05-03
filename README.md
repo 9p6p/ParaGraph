@@ -1,117 +1,64 @@
-# ParaGraph
+# ParaGraph: Accelerating Graph Indexing through GPU-CPU Parallel Processing for Efficient Cross-modal ANNS
 
-基于 GPU-CPU 协同计算的高性能跨模态索引构建框架
+This repository includes the codes for the SIGMOD's Workshop DaMoN 2025 paper ParaGraph.
 
-===========================================
+![](https://api.visitorbadge.io/api/VisitorHit?user=9p6p&repo=ParaGraph&countColor=%237B1E7A)
 
-# 构建说明 (Build Instructions)
+[![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/9p6p/cf0fb22e0e7c80f5fed949e53d29eaca/raw/clone.json&logo=github)]((https://github.com/MShawon/github-clone-count-badge))
 
-请按照以下步骤编译项目：
+The master branch is the codebase of the RoarGraph paper.
 
-1. 创建并进入构建目录：
-   mkdir -p build
-   cd build
-2. 使用 CMake 配置项目（假设 CMakeLists.txt 位于上级目录）：
-   cmake ..
-3. 使用 Make 编译（-j 可并行加速）：
-   make -j
-4. 返回项目根目录：
-   cd ..
+## Getting Started & Reproduce Experiments in the Paper
+File format: all `~bin` files begin with the number of vectors (uint32, 4 bytes), dimension (uint32, 4 bytes), and followed by the vector data. (Same format as big-ann competition.)
 
-===========================================
+You can obtain the required datasets from the RoarGraph repository. We utilize Python scripts to perform the necessary data transformations. For the index construction process, we exclusively use the base vector set (base) and the corresponding ground truth data (gt).
 
-# 使用方法 (Usage)
+The base vector data (base_data) is structured as an num x dim matrix, where num signifies the total number of vectors, and dim denotes the dimensionality of each vector. These two parameters, num and dim, must be pre-defined within the source code.
 
-编译成功后，在项目根目录下运行以下脚本启动程序：
+Furthermore, to ensure efficient GPU memory management, the handling of the ground truth (gt) data is modified. Specifically, the number of ground truth neighbors recorded for each query vector (often denoted as gt_num or top_k) is limited or adjusted to 128.
+
+0. Prerequisite
+```
+cmake >= 3.24
+g++ >= 9.4
+CPU supports AVX-512
+
+Python >= 3.8
+Python package:
+numpy
+urllib
+tarfile
+
+NVIDIA GPU
+CUDA Toolkit
+cuDNN
+```
 
 ```
-bash run_t2i.sh
+sudo apt install libaio-dev libgoogle-perftools-dev clang-format libboost-all-dev libmkl-full-dev
 ```
 
-===========================================
+You can refer to additional resources to configure the GPU environment.
 
-# 技术细节与注意事项 (Technical Details & Notes)
+```bash
+git clone https://github.com/9p6p/ParaGraph.git
+```
 
-1. 数据格式 (Data Format)
-
----
-
-• Ground Truth (gt):
-
-- 需统一 transform 为 128 维
-- 若维度 > 128：截断
-- 若维度 < 128：不足部分填充 -1
-
-• 输入数据 (data):
-
-- 格式为 [num × dim] 的矩阵
-- num 和 dim 需在程序 t2iend 中预定义
-
-2. ParaGraph 配置 (ParaGraph Configuration)
-
----
-
-图处理流程包括：
-
-• 图一：Top1 Projection（GPU）
-
-- 度数设为 55
-
-• 图二：Search-Refine（GPU）
-
-- 度数设为 64
-
-• 图三：Multi-round Projection（GPU）
-
-- 度数设为 55
-
-• 融合处理（Fusion）：
-
-- 前三张图在 CPU 上融合，生成最终图
-
-• 图四：最终融合图
-
-- 度数设为 70
-
-3. GPU 内存管理 (GPU Memory Management)
-
----
-
-• 内存预分配：
-
-- GPU 启动时预申请固定内存空间以优化性能
-
-• 固定度数：
-
-- 所有图节点的出度和入度固定为 128
-
-• 空间复用：
-
-- 固定度数策略可实现内存高效复用
-
-• 数据维度关联：
-
-- gt 数据需 resize 为 128 维，以匹配内存结构
-
-===========================================
-
-# 构建流程：
-
+1. Compile and build
+```bash
+mkdir -p build
 cd build
-cmake ..
-make -j
-cd ..
+cmake .. && make -j
+```
 
-# 启动程序：
+2. Bulild Index
+```bash
+bash run_roargraph.sh
+```
 
-bash run_paragraph.sh
+## License
+MIT License
 
-===========================================
-
-# 注意点总结
-
-- gt 数据需通过 transform 转为 128 维（多则截断，少则填 -1）
-- 输入数据为 num×dim 格式，需在程序中定义 num 与 dim
-- 图处理采用 3 张 GPU 图 + 1 张融合图，度数分别为：
-  → 图一 55，图二 64，图三 55，图四（融合）70
-- 为实现 GPU 高效执行，需固定图的出入度为 128，空间复用（gt128）
+## Contact
+For questions or inquiries, feel free to reach out to me at
+[yangyx2023@mail.sustech.edu.cn](mailto:yangyx2023@mail.sustech.edu.cn)
