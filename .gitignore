@@ -1,5 +1,5 @@
-build/*
-.vscode/*
-data/*
-indices/*
-logs/*
+build/
+.vscode/
+data/
+indices/
+logs/
