@@ -6,7 +6,7 @@ This repository includes the codes for the SIGMOD's Workshop DaMoN 2025 paper Pa
 
 [![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/9p6p/cf0fb22e0e7c80f5fed949e53d29eaca/raw/clone.json&logo=github)]((https://github.com/MShawon/github-clone-count-badge))
 
-The master branch is the codebase of the RoarGraph paper.
+The master branch is the codebase of the ParaGraph paper.
 
 ## Getting Started & Reproduce Experiments in the Paper
 File format: all `~bin` files begin with the number of vectors (uint32, 4 bytes), dimension (uint32, 4 bytes), and followed by the vector data. (Same format as big-ann competition.)
@@ -17,7 +17,7 @@ The base vector data (base_data) is structured as an num x dim matrix, where num
 
 Furthermore, to ensure efficient GPU memory management, the handling of the ground truth (gt) data is modified. Specifically, the number of ground truth neighbors recorded for each query vector (often denoted as gt_num or top_k) is limited or adjusted to 128.
 
-0. Prerequisite
+## 0. Prerequisite
 ```
 cmake >= 3.24
 g++ >= 9.4
@@ -44,14 +44,14 @@ You can refer to additional resources to configure the GPU environment.
 git clone https://github.com/9p6p/ParaGraph.git
 ```
 
-1. Compile and build
+## 1. Compile and build
 ```bash
 mkdir -p build
 cd build
 cmake .. && make -j
 ```
 
-2. Bulild Index
+## 2. Bulild Index
 ```bash
 bash run_roargraph.sh
 ```
