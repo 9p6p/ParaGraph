@@ -53,7 +53,7 @@ cmake .. && make -j
 
 ## 2. Bulild Index
 ```bash
-bash run_roargraph.sh
+bash run_paragraph.sh
 ```
 
 ## License
