@@ -11,7 +11,8 @@ The master branch is the codebase of the ParaGraph paper.
 ## Getting Started & Reproduce Experiments in the Paper
 File format: all `~bin` files begin with the number of vectors (uint32, 4 bytes), dimension (uint32, 4 bytes), and followed by the vector data. (Same format as big-ann competition.)
 
-You can obtain the required datasets from the RoarGraph repository. We utilize Python scripts to perform the necessary data transformations. For the index construction process, we exclusively use the base vector set (base) and the corresponding ground truth data (gt).
+You can obtain the required datasets from the [RoarGraph repository](https://github.com/matchyc/RoarGraph)
+. We utilize Python scripts to perform the necessary data transformations. For the index construction process, we exclusively use the base vector set (base) and the corresponding ground truth data (gt).
 
 The base vector data (base_data) is structured as an num x dim matrix, where num signifies the total number of vectors, and dim denotes the dimensionality of each vector. These two parameters, num and dim, must be pre-defined within the source code.
 
