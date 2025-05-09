@@ -8,6 +8,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: # Add this block
+      contents: write # Grant write permission for repository contents
 
     steps:
       - uses: actions/checkout@v2
