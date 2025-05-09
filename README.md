@@ -4,7 +4,7 @@ This repository includes the codes for the SIGMOD's Workshop DaMoN 2025 paper Pa
 
 ![](https://api.visitorbadge.io/api/VisitorHit?user=9p6p&repo=ParaGraph&countColor=%237B1E7A)
 
-[![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/9p6p/cf0fb22e0e7c80f5fed949e53d29eaca/raw/clone.json&logo=github)]((https://github.com/MShawon/github-clone-count-badge))
+[![GitHub Clones](https://img.shields.io/badge/dynamic/json?color=success&label=Clone&query=count&url=https://gist.githubusercontent.com/9p6p/e0630d25817c7ab360f7e85328c9559c/raw/clone.json&logo=github)]((https://github.com/MShawon/github-clone-count-badge))
 
 The master branch is the codebase of the ParaGraph paper.
 
