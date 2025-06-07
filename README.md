@@ -83,4 +83,4 @@ This project is licensed under the MIT License.
 
 ## Contact
 For questions or inquiries, feel free to reach out to me at
-[yangyx2023@mail.sustech.edu.cn](mailto:yangyx2023@mail.sustech.edu.cn)
+[dev@alayadb.ai](mailto:dev@alayadb.ai)
